@@ -17,9 +17,9 @@
 	
 	define('GRAVATAR_RES', '230');
 	
-	define('YOUTUBE_VIDEO_ID', 'RRNqRuyFSXk');
+	define('YOUTUBE_VIDEO_ID', 'CDmWJbN8bDo');
 	
-	define('YOUTUBE_VIDEO_TITLE', 'flux pavilion - do or die (ft. childish gambino)');
+	define('YOUTUBE_VIDEO_TITLE', 'skream &amp; example - shot yourself in the foot again');
 	
 	prepare_http_get_query();
 	
