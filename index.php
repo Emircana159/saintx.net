@@ -181,7 +181,7 @@
 		<script type="text/javascript" src="<?=base('assets/js/jquery.yt.player.js');?>"></script>
 		<script type="text/javascript" src="<?=base('assets/js/jquery.reveal.js');?>"></script>
 		<link rel="stylesheet" type="text/css" href="<?=base('assets/css/normalize.min.css');?>" />
-		<link rel="stylesheet" type="text/css" href="<?=base('assets/css/saintx.style.min.css');?>" />
+		<link rel="stylesheet" type="text/css" href="<?=base('assets/css/saintx.style.css');?>" />
 		<link rel="stylesheet" type="text/css" href="<?=base('assets/css/reveal.min.css');?>" />
 		<link rel="author" type="text/plain" href="<?=base('humans.txt');?>" />
 		<script type="text/javascript">
@@ -214,13 +214,13 @@
 						<span class="saintx"><i>.sosyal medyada .<span class="red">ben</span>!</i></span>
 					</h2>
 					<div class="clearfix empty-10"></div>
-					<div class="socialmedia mr">
-						<a href="<?=base();?>" rel="home"><i class="web-icon"></i></a>
-						<a href="<?=base('redirect?url='.urlencode($social->facebook));?>" target="_blank"><i class="facebook-icon"></i></a>
-						<a href="<?=base('redirect?url='.urlencode($social->twitter));?>" target="_blank"><i class="twitter-icon"></i></a>
-						<a href="<?=base('redirect?url='.urlencode($social->gplus));?>" target="_blank"><i class="gplus-icon"></i></a>
-						<a href="<?=base('redirect?url='.urlencode($social->github));?>" target="_blank"><i class="github-icon"></i></a>
-						<a href="<?=base('redirect?url='.urlencode($social->linkedin));?>" target="_blank"><i class="linkedin-icon"></i></a>
+					<div class="socialmedia mr" id="socialmedia">
+						<a href="<?=base();?>" rel="home"><img src="<?=base('assets/img/web-icon.png');?>" alt="web-icon" height="48" width="48" /></a>
+						<a href="<?=base('redirect?url='.urlencode($social->facebook));?>" target="_blank"><img src="<?=base('assets/img/facebook-icon.png');?>" alt="facebook-icon" height="48" width="48" /></a>
+						<a href="<?=base('redirect?url='.urlencode($social->twitter));?>" target="_blank"><img src="<?=base('assets/img/twitter-icon.png');?>" alt="twitter-icon" height="48" width="48" /></a>
+						<a href="<?=base('redirect?url='.urlencode($social->gplus));?>" target="_blank"><img src="<?=base('assets/img/google-plus-icon.png');?>" alt="gplus-icon" height="48" width="48" /></a>
+						<a href="<?=base('redirect?url='.urlencode($social->github));?>" target="_blank"><img src="<?=base('assets/img/github-icon.png');?>" alt="github-icon" height="48" width="48" /></a>
+						<a href="<?=base('redirect?url='.urlencode($social->linkedin));?>" target="_blank"><img src="<?=base('assets/img/linkedin-icon.png');?>" alt="linkedin-icon" height="48" width="48" /></a>
 					</div>
 				</div>
 				<div class="right">
