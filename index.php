@@ -204,7 +204,8 @@
 				<div class="left">
 					<h1>
 						<span class="saintx">.merhaba!</span>
-						<br /><span class="saintx">.ben .</span><span class="red saintx">o</span><span class="saintx">gün!</span></h1>
+						<br /><span class="saintx">.ben .</span><span class="red saintx">o</span><span class="saintx">gün!</span>
+					</h1>
 					<div class="clearfix empty-10"></div>
 					<div class="gravatar">
 						<img src="<?=show_gravatar();?>" width="<?=GRAVATAR_RES;?>" height="<?=GRAVATAR_RES;?>" alt="gravatar" />
@@ -215,12 +216,12 @@
 					</h2>
 					<div class="clearfix empty-10"></div>
 					<div class="socialmedia mr" id="socialmedia">
-						<a href="<?=base();?>" rel="home"><img src="<?=base('assets/img/web-icon.png');?>" alt="web-icon" height="48" width="48" /></a>
-						<a href="<?=base('redirect?url='.urlencode($social->facebook));?>" target="_blank"><img src="<?=base('assets/img/facebook-icon.png');?>" alt="facebook-icon" height="48" width="48" /></a>
-						<a href="<?=base('redirect?url='.urlencode($social->twitter));?>" target="_blank"><img src="<?=base('assets/img/twitter-icon.png');?>" alt="twitter-icon" height="48" width="48" /></a>
-						<a href="<?=base('redirect?url='.urlencode($social->gplus));?>" target="_blank"><img src="<?=base('assets/img/google-plus-icon.png');?>" alt="gplus-icon" height="48" width="48" /></a>
-						<a href="<?=base('redirect?url='.urlencode($social->github));?>" target="_blank"><img src="<?=base('assets/img/github-icon.png');?>" alt="github-icon" height="48" width="48" /></a>
-						<a href="<?=base('redirect?url='.urlencode($social->linkedin));?>" target="_blank"><img src="<?=base('assets/img/linkedin-icon.png');?>" alt="linkedin-icon" height="48" width="48" /></a>
+						<a href="<?=base();?>" rel="home"><i class="web-icon"></i></a>
+						<a href="<?=base('redirect?url='.urlencode($social->facebook));?>" target="_blank"><i class="facebook-icon"></i></a>
+						<a href="<?=base('redirect?url='.urlencode($social->twitter));?>" target="_blank"><i class="twitter-icon"></i></a>
+						<a href="<?=base('redirect?url='.urlencode($social->gplus));?>" target="_blank"><i class="gplus-icon"></i></a>
+						<a href="<?=base('redirect?url='.urlencode($social->github));?>" target="_blank"><i class="github-icon"></i></a>
+						<a href="<?=base('redirect?url='.urlencode($social->linkedin));?>" target="_blank"><i class="linkedin-icon"></i></a>
 					</div>
 				</div>
 				<div class="right">
