@@ -17,9 +17,11 @@
 	
 	define('GRAVATAR_RES', '230');
 	
-	define('YOUTUBE_VIDEO_ID', 'CDmWJbN8bDo');
+	define('YOUTUBE_VIDEO_ID', 'P5OC0jfZmpg');
 	
-	define('YOUTUBE_VIDEO_TITLE', 'skream &amp; example - shot yourself in the foot again');
+	define('YOUTUBE_VIDEO_TITLE', 'krewella - alive (pegboard nerds remix) ');
+	
+	define('SKYPE_USERNAME', 'ognkrks.tr');
 	
 	prepare_http_get_query();
 	
@@ -41,10 +43,26 @@
 	}
 	
 	if($_GET['route_pagename'] == 'get_contents') {
+		exit(@file_get_contents($_GET['request_queries']['url']));
+	}
+	
+	if($_GET['route_pagename'] == 'skype.status.png') {
+		$get = @file_get_contents(sprintf('http://mystatus.skype.com/%s.txt', SKYPE_USERNAME));
 		
-		echo @file_get_contents($_GET['request_queries']['url']);
-		
-		exit;
+		switch($get) {
+			case 'Online': {
+				header(sprintf('Location: %s', base('assets/img/skype.online.png')));
+			} break;
+			case 'Away': {
+				header(sprintf('Location: %s', base('assets/img/skype.away.png')));
+			} break;
+			case 'Do Not Disturb': {
+				header(sprintf('Location: %s', base('assets/img/skype.do.not.disturb.png')));
+			} break;
+			default: {
+				header(sprintf('Location: %s', base('assets/img/skype.offline.png')));
+			}
+		}
 	}
 	
 	if($_GET['route_pagename'] == 'redirect') {
