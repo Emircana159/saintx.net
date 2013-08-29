@@ -273,6 +273,7 @@ AddType text/vtt                            vtt
 # FileETag None is not enough for every server.
 <IfModule mod_headers.c>
   Header unset ETag
+  Header unset X-Powered-By
 </IfModule>
 
 # Since we're sending far-future expires, we don't need ETags for
@@ -339,9 +340,11 @@ FileETag None
 # Options +SymLinksIfOwnerMatch
   RewriteEngine On
 # RewriteBase /
+  RewriteRule ^mobile-detector-demo\.saintx$ saintx.mobile.ads.php [L]
+  RewriteRule ^mobile-detector\.saintx$ saintx.mobile.detector.php [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond $1 !^(index\.php|assets|sitemap\.xml|robots\.txt|crossdomain\.xml)
+  RewriteCond $1 !^(index\.php|assets|saintx\.mobile\.ads\.php|saintx\.mobile\.detector\.php|sitemap\.xml|robots\.txt|crossdomain\.xml)
   RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
 </IfModule>
 
@@ -437,7 +440,7 @@ Options -MultiViews
 # You can add custom pages to handle 500 or 403 pretty easily, if you like.
 # If you are hosting your site in subdirectory, adjust this accordingly
 #    e.g. ErrorDocument 404 /subdir/404.html
-ErrorDocument 404 /404.html
+ErrorDocument 404 /assets/img/engellendi.png
 
 
 # ----------------------------------------------------------------------

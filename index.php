@@ -7,6 +7,7 @@
 	 * @web: http://saintx.net
 	 * @mail: im@saintx.net
 	 * @date: 28.06.2013
+	 * @update: 25.08.2013
 	 */
 	
 	set_include_path(dirname(realpath(__FILE__)).DIRECTORY_SEPARATOR);
@@ -17,9 +18,9 @@
 	
 	define('GRAVATAR_RES', '230');
 	
-	define('YOUTUBE_VIDEO_ID', 'P5OC0jfZmpg');
+	define('YOUTUBE_VIDEO_ID', '359na4NeaVA');
 	
-	define('YOUTUBE_VIDEO_TITLE', 'krewella - alive (pegboard nerds remix) ');
+	define('YOUTUBE_VIDEO_TITLE', 'eminem - berzerk');
 	
 	define('SKYPE_USERNAME', 'ognkrks.tr');
 	
@@ -42,10 +43,6 @@
 		exit;
 	}
 	
-	if($_GET['route_pagename'] == 'get_contents') {
-		exit(@file_get_contents($_GET['request_queries']['url']));
-	}
-	
 	if($_GET['route_pagename'] == 'skype.status.png') {
 		$get = @file_get_contents(sprintf('http://mystatus.skype.com/%s.txt', SKYPE_USERNAME));
 		
@@ -63,6 +60,44 @@
 				header(sprintf('Location: %s', base('assets/img/skype.offline.png')));
 			}
 		}
+	}
+	
+	if($_GET['route_pagename'] == 'skype.status') {
+		if(is_array($_GET['route_queries'][1]) || empty($_GET['route_queries'][1]))
+			header('Location: %s', base());
+		
+		if(!is_array($_GET['route_queries'][1])) {
+			if(substr($_GET['route_queries'][1], 0, -4) != '.png')
+				$_GET['route_queries'][1] .= '.png';
+			
+			$skype_username = @rtrim($_GET['route_queries'][1], '.png');
+		} else
+			$skype_username = 'ognkrks.tr';
+		
+		$get = @file_get_contents(sprintf('http://mystatus.skype.com/%s.txt', $skype_username));
+		
+		switch($get) {
+			case 'Online': {
+				header(sprintf('Location: %s', base('assets/img/skype.online.png')));
+			} break;
+			case 'Away': {
+				header(sprintf('Location: %s', base('assets/img/skype.away.png')));
+			} break;
+			case 'Do Not Disturb': {
+				header(sprintf('Location: %s', base('assets/img/skype.do.not.disturb.png')));
+			} break;
+			default: {
+				header(sprintf('Location: %s', base('assets/img/skype.offline.png')));
+			}
+		}
+	}
+	
+	if($_GET['route_pagename'] == 'imzam') {
+		header(sprintf('Location: %s', base('assets/img/saintx-imza.png')));
+	}
+	
+	if($_GET['route_pagename'] == 'spyerror') {
+		header(sprintf('Location: %s', base('assets/img/spyerror-imza.png')));
 	}
 	
 	if($_GET['route_pagename'] == 'redirect') {
@@ -166,10 +201,10 @@
 		'linkedin' => 'http://tr.linkedin.com/in/ogunkarakus/'
 	);
 	
-	$js_frameworks = (object) array(
-		'modernizr' => base('redirect?url='.urlencode('https://yandex.st/modernizr/2.6.2/modernizr.min.js').'&amp;no_wait=true'),
-		'jquery' => base('redirect?url='.urlencode('https://yandex.st/jquery/1.6.3/jquery.min.js').'&amp;no_wait=true')
-	);
+	header('Cache-Control: no-cache, must-revalidate');
+	header('Pragma: no-cache');
+	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+	header('Cache-Control: max-age=300');
 	
 ?><!DOCTYPE html>
 <!--[if lt IE 7]>
@@ -189,32 +224,25 @@
 		<!--[if lt IE 9]>
 			<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" />
 		<![endif]-->
-		<title>.ogün!</title>
+		<title>.merhaba! .ben .ogün!</title>
 		<meta name="author" content="SAINTX" />
 		<meta name="description" content="merhaba dünya! ben .ogün!" />
 		<meta name="keywords" content="ogün, ogün karakuş, saintx, php, php geliştirici" />
+		<meta name="google-site-verification" content="YIRR4qg71qMeyJY9f6HNz3xEKR8867miBKKr2lYp6w8" />
+		<meta name="msvalidate.01" content="300383D07ACE7E1E1DB03BF3D6F90FEC" />
+		<meta name="robots" content="noindex,nofollow,noarchive" />
+		<meta name="googlebot" content="noindex,nofollow,noarchive" />
 		<meta property="og:image" content="<?=base('redirect?url='.urlencode(get_gravatar('im@saintx.net', 400)).'&amp;no_wait=true');?>" />
-		<script type="text/javascript" src="<?=$js_frameworks->modernizr;?>"></script>
-		<script type="text/javascript" src="<?=$js_frameworks->jquery;?>"></script>
+		<script type="text/javascript" src="<?=base('assets/js/modernizr.min.js');?>"></script>
+		<script type="text/javascript" src="<?=base('assets/js/jquery.min.js');?>"></script>
 		<script type="text/javascript" src="<?=base('assets/js/jquery.yt.player.js');?>"></script>
 		<script type="text/javascript" src="<?=base('assets/js/jquery.reveal.js');?>"></script>
 		<link rel="stylesheet" type="text/css" href="<?=base('assets/css/normalize.min.css');?>" />
-		<link rel="stylesheet" type="text/css" href="<?=base('assets/css/saintx.style.css');?>" />
+		<link rel="stylesheet" type="text/css" href="<?=base('assets/css/saintx.style.min.css');?>" />
 		<link rel="stylesheet" type="text/css" href="<?=base('assets/css/reveal.min.css');?>" />
+		<link rel="shortcut icon" type="image/png" href="<?=base('assets/img/favicon.png');?>" />
 		<link rel="author" type="text/plain" href="<?=base('humans.txt');?>" />
-		<script type="text/javascript">
-			$('document').ready(function() {
-				var options = {
-					videoId: '<?=YOUTUBE_VIDEO_ID;?>',
-					start: 0,
-					increaseVolumeBy: 100,
-					ratio: 4/3,
-					mute: false
-				};
-				
-				$('#wrapper-video').tubular(options);
-			});
-		</script>
+		<script type="text/javascript">$("document").ready(function(){$('span[action-id="hide"]').live("click",function(){$("#wrapper .left").stop().fadeOut(250);$('#wrapper .right div[data-id="about"]').stop().fadeOut(250);$("#wrapper .right h1").stop().fadeOut(250).next().stop().fadeOut(250);$('span[action-text="hide"]').html("göster").removeAttr("action-text").attr("action-text","show");$('span[action-id="hide"]').removeAttr("action-id").attr("action-id","show");return false});$('span[action-id="show"]').live("click",function(){$("#wrapper .left").stop().fadeIn(250);$('#wrapper .right div[data-id="about"]').stop().fadeIn(250);$("#wrapper .right h1").stop().fadeIn(250).next().stop().fadeIn(250);$('span[action-text="show"]').html("gizle").removeAttr("action-text").attr("action-text","hide");$('span[action-id="show"]').removeAttr("action-id").attr("action-id","hide");return false});var a={videoId:"<?=YOUTUBE_VIDEO_ID;?>",start:0,increaseVolumeBy:100,ratio:4/3,mute:false};$("#wrapper-video").tubular(a)});</script>
 	</head>
 	<body>
 		<div id="wrapper-video">
@@ -247,35 +275,28 @@
 						<span class="saintx">.<span class="red">h</span>akkımda!</span>
 					</h1>
 					<div class="clearfix empty-10"></div>
-					<div class="about-me">
-						<span class="saintx i h">.1996 yılında akhisar'da doğdum.</span><br />
-						<span class="saintx i h">.<?=yas()?> yaşındayım. (<?=date('Y')?> yılına göre)</span><br />
-						<span class="saintx i h">.yeni şeyler öğrenmeyi severim.</span><br />
-						<span class="saintx i h">.ayrıca php, mysql, html5, css3 &amp; javascript'e</span><br />
-						<span class="saintx i h">karşı büyük ilgim var.</span><br />
-						<span class="saintx i h">.gezmeye, sohbet etmeye &amp; kahve içmeye bayılırım.</span><br />
-						<span class="saintx i h">.halen lisede öğrenim görmekteyim.</span><br />
-						<span class="saintx i h">.gelecekteki hedefim ise</span><br />
-						<span class="saintx i h">profesyonel bi' yazılımcı olmak.</span><br />
-						<span class="saintx i h">.sanırım bu kadar yeter :).</span><br />
+					<div data-id="about">
+						<div class="about-me">
+							<span class="saintx i h">.1996 yılında akhisar'da doğdum.</span><br />
+							<span class="saintx i h">.<?=yas()?> yaşındayım. (<?=date('Y')?> yılına göre)</span><br />
+							<span class="saintx i h">.yeni şeyler öğrenmeyi severim.</span><br />
+							<span class="saintx i h">.ayrıca php, mysql, html5, css3 &amp; javascript'e</span><br />
+							<span class="saintx i h">karşı büyük ilgim var.</span><br />
+							<span class="saintx i h">.gezmeye, sohbet etmeye &amp; kahve içmeye bayılırım.</span><br />
+							<span class="saintx i h">.halen lisede öğrenim görmekteyim.</span><br />
+							<span class="saintx i h">.gelecekteki hedefim ise</span><br />
+							<span class="saintx i h">profesyonel bi' yazılımcı olmak.</span><br />
+							<span class="saintx i h">.sanırım bu kadar yeter :).</span><br />
+							<div class="clearfix empty-10"></div>
+							<span class="saintx i">.çalan şarkı -> <?=now_playing_song();?>.</span>
+						</div>
 						<div class="clearfix empty-10"></div>
-						<span class="saintx i">.çalan şarkı -> <?=now_playing_song();?>.</span>
-					</div>
-					<div class="clearfix empty-10"></div>
-					<h1>
-						<span class="saintx"><a href="#" class="white" data-reveal-id="contactForm">.<span class="red">i</span>letişim!</a></span>
-					</h1>
-					<div class="clearfix empty-10"></div>
-					<div class="about-me">
-						<span class="saintx i">.benimle iletişim kurmak istiyorsanız;</span><br />
-						<span class="saintx i"><a href="#" class="white" data-reveal-id="contactForm">bu bağlantıya tıkla</a>yarak bana mesaj gönderebilirsiniz!</span>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div id="contactForm" class="reveal-modal large dn">
-			<iframe frameborder="0" width="620" height="505" src="<?=base('redirect?url='.urlencode('http://form.jotformeu.com/form/31831939471359').'&amp;no_wait=true');?>"></iframe>
-			<a class="close-reveal-modal">&#215;</a>
+			<div class="sticky">
+				<span class="saintx link" action-id="hide">.<span class="red link">y</span>azıları <span action-text="hide">gizle</span>!</span>
+			</div>
 		</div>
 	</body>
 </html>

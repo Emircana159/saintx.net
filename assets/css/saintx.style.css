@@ -106,6 +106,16 @@ a:hover {
 	text-decoration: underline;
 }
 
+.link, .link:link, .link:hover, .link:active, .link:visited {
+	cursor: pointer!important;
+	text-decoration: none;
+}
+
+.link:hover {
+	cursor: pointer!important;
+	text-decoration: underline;
+}
+
 label {
 	cursor: pointer;
 }
@@ -207,6 +217,12 @@ label {
 
 #socialmedia a, #socialmedia a:hover {
 	text-decoration: none;
+}
+
+.sticky {
+	position: absolute;
+	top: 0.5em;
+	left: 1.25em;
 }
 
 /* ==========================================================================
